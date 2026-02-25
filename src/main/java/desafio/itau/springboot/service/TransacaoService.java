@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.OffsetDateTime;
+import java.util.DoubleSummaryStatistics;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -27,5 +28,10 @@ public class TransacaoService {
 
     public void deletar(){
         lista.clear();
+    }
+
+    public DoubleSummaryStatistics getStatistics(){
+        OffsetDateTime agora = OffsetDateTime.now();
+        return lista.stream().filter(t -> t.getDataHora().isAfter(agora.minusSeconds(60))).mapToDouble(Transacao::getValor).summaryStatistics();
     }
 }

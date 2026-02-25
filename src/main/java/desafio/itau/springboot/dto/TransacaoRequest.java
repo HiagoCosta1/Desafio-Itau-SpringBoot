@@ -1,6 +1,5 @@
 package desafio.itau.springboot.dto;
 
-import desafio.itau.springboot.model.Transacao;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.OffsetDateTime;
